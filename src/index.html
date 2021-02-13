@@ -1,0 +1,179 @@
+<!DOCTYPE html>
+<html>
+
+<head>
+  <meta charset="UTF-8">
+  <title>MinecraftPackConverter</title>
+  <link rel="stylesheet" href="index.css">
+  <link rel="stylesheet" href="fontawesome/css/all.css">
+  <link rel="stylesheet" href="views/home/home.css">
+  <link rel="stylesheet" href="views/settings/settings.css">
+  <link rel="stylesheet" href="views/lab/lab.css">
+  <link rel="stylesheet" href="assets/unicons/css/unicons.css">
+  <script src="js/2dskin.js" type="text/javascript"></script>
+  <script src="js/three.min.js" type="text/javascript"></script>
+</head>
+
+<body>
+  <div class="mount">
+    <!--NAVBAR-->
+    <div class="header">
+      <div class="drag">
+      </div>
+      <div class="upper">
+        <ul id="inhomenav" class="navbar">
+          <li to="home">HOME</li>
+          <li to="settings">SETTINGS</li>
+          <li to="lab">LAB</li>
+        </ul>
+      </div>
+      <div class="controls">
+        <a id="minimize" class="uil uil-square">
+        </a>
+        <a id="close" class="uil uil-times">
+        </a>
+      </div>
+    </div>
+    <!--APP-->
+    <div class="background" state="home"></div>
+    <div id="app" class="app">
+      <!--HOME -->
+      <div id="home" class="divWrap invisible">
+        <div class="homeWrapper">
+          <div class="playWrap" disabled>
+            <div class="playMenu">
+              <div class="select-box">
+                <div class="select-box__current" tabindex="1">
+                  <img class="select-box__icon" src="http://cdn.onlinewebfonts.com/svg/img_295694.svg" alt="Arrow Icon"
+                    aria-hidden="true" />
+                </div>
+                <ul class="select-box__list">
+
+                </ul>
+              </div>
+              <button id="open-pack">WATCH</button>
+            </div>
+          </div>
+          <div id="converterState" class="downloadsWrap" state="ready">
+            <div class="profile-card">
+              <img src="./assets/pack.png" alt="">
+              <div class="profile-main">
+                <h2>Port to 1.8.x <span state="stable">Stable</span></h2>
+                <h3>Convert {SELECTED} to Minecraft 1.8.x<span> BlockStates, models and textures will be
+                    converted to MC 1.8.x</span></h3>
+              </div>
+              <div class="profile-stat-off">
+                <button version="1.8.x" class="start-button">CONVERT</button>
+              </div>
+            </div>
+            <div class="profile-card">
+              <img src="./assets/pack.png" alt="">
+              <div class="profile-main">
+                <h2>Port to 1.16 <span state="stable">Stable</span></h2>
+                <h3>Convert {SELECTED} to Minecraft 1.16<span> BlockStates, models and textures will be
+                    converted to MC 1.16</span></h3>
+              </div>
+              <div class="profile-stat-off">
+                <button version="1.16" class="start-button">CONVERT</button>
+              </div>
+            </div>
+          </div>
+
+          <div id="modal-account" class="modal invisible">
+            <div class="modal-account">
+              <h2>Add Minecraft account</h2>
+              <form id="premium-account">
+                <input type="email" required placeholder="Email" name="email" id="acc-email">
+                <input type="password" title="unique password" required placeholder="Password" name="password"
+                  id="acc-password">
+                <a>Forgot Your Password?</a>
+                <div>
+                  <button class="cancel-button" type="reset">Cancel</button>
+                  <button type="submit">Add</button>
+                </div>
+              </form>
+              <a id="change-premium">No Premium? <i class="fas fa-angle-down"></i></a>
+              <form id="nopremium-account" class="invisible">
+                <input type="text" required placeholder="Nickname">
+                <div>
+                  <button class="cancel-button" type="reset">Cancel</button>
+                  <button type="submit">Add</button>
+                </div>
+              </form>
+            </div>
+          </div>
+        </div>
+      </div>
+      <!--SETTINGS-->
+      <div id="settings" class="divWrap invisible">
+        <div class="settingsWrap"">
+          <div class=" s-options">
+          <ul>
+            <li><a href="#s-general">General</a></li>
+            <li><a href="#s-about">About</a></li>
+            <li><a href="#s-pc">PC</a></li>
+          </ul>
+        </div>
+        <div class="s-configurations">
+          <section id="s-general">
+            <h2>General</h2>
+            <h3>Launcher Settings</h3>
+            <label for="kepplauncheropen"><input type="checkbox" id="kepplauncheropen" class="switch"><span>Keep the
+                launcher open while games are running</span></label>
+            <label for="kepplauncheropen"><input type="checkbox" id="kepplauncheropen" class="switch"><span>Open console
+                log when games start</span></label>
+            <h3>Crash reports</h3>
+            <label for="kepplauncheropen"><input type="checkbox" id="kepplauncheropen"
+                class="switch"><span>Automatically send crash reports</span></label>
+          </section>
+          <section id="s-about">
+            <h2>About</h2>
+            <h4>Minecraft Pack Converter</h4>
+            <p>Build 1.0.0</p>
+
+            <h3>Libraries</h3>
+            <h5>Electron <span>10.0.0</span></h5>
+            <h5>Electron Forge <span>6.0.0-beta.53</span></h5>
+            <h5>node 7z forall <span>1.0.5</span></h5>
+            <h5>unrar <span>0.2.0</span></h5>
+            <h5>JQuery <span>3.4.1</span></h5>
+            <h5>Three.js <span>r120</span></h5>
+          </section>
+          <section id="s-pc">
+            <h2>PC</h2>
+            <p id="test"></p>
+          </section>
+          <button>Report a bug</button>
+        </div>
+      </div>
+    </div>
+    <!--LAB-->
+    <div id="lab" class="divWrap invisible">
+      <div class="accountWrapper">
+        <canvas id="canvas" width="64" height="64"></canvas>
+        <div class="modelwrapper">
+          <div id="model">
+          </div>
+          <div id="modelcontroller" class="model-controller"></div>
+          <h2 id="model-name"></h2>
+        </div>
+        <div class="pixel-account">
+          <h2 id="pixel-username"><span>Username: </span></h2>
+          <h2 id="pixel-email"><span>Email: </span></h2>
+          <h2 id="pixel-from"><span>Sign in from: </span></h2>
+          <button>Edit profile</button>
+        </div>
+      </div>
+    </div>
+  </div>
+  <!--Disclaimer-->
+  <h3>Minecraft Pack Converter - Not affiliated with Mojang AB.</h3>
+
+  </div>
+  <script src="./js/mc.converter.js"></script>
+  <script src="./js/main.js"></script>
+  <script src="./js/fs.extra.js"></script>
+  <script src="./js/player.js"></script>
+</body>
+
+</html>
